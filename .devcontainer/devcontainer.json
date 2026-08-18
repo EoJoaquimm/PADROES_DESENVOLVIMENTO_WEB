@@ -1,0 +1,42 @@
+{
+  //DEFINE O NOME DO CONTAINER
+  "name": "PADROES DE DESENVOLVIMENTO WEB",
+  //INDICA COMO A IMAGEM SERA CRIADA
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+
+  //LIBERA AS PORTAS DO CONTAINER
+  "forwardPorts": [8080, 3306],
+
+  //EFETUA PERSONALIZACOES NO VISUAL STUDIO CODE
+  "customizations": {
+    "vscode": {
+      //DEFINE AS EXTENSOES QUE SERAO INSTALADAS
+      "extensions": [
+        "ms-azuretools.vscode-docker", // DOCKER       
+        "vscjava.vscode-java-pack", // JAVA          
+        "vmware.vscode-spring-boot", // SPRING BOOT        
+        "vscjava.vscode-spring-boot-dashboard", // DASHBOARD DO APLICATIVO(POSSUI METRICAS DO APLICATIVO, MOSTRA INFORMACOES DO APLICATIVO) 
+        "cweijan.vscode-mysql-client2",// MYSQL   
+        "vscjava.vscode-spring-initializr"
+      ],
+
+      // CONFIGURACEOS VISUAIS DO VIUAL STUDIO CODE
+      "settings": {
+        "workbench.colorTheme": "Dark Modern", //TEMA 
+        "editor.fontSize": 14, // FONTE DO EDITOR 
+        "terminal.integrated.fontSize": 20, // FONTE DO TERMINAL
+        "java.server.launchMode": "Standard" // FORCA O JAVA A INICIAR NO MODO "NORMAL"
+      }
+    }
+  },
+
+  // EXECUTA NA CRIACAO DO CONTAINER
+  // CONFIGURA O MYSQL
+  "postCreateCommand": "/bin/bash .devcontainer/init-mysql.sh",
+
+  // EXECUTA TODA VEZ QUE O CONTAINER É EXECUTADO
+  // INICIA O MYSQL
+  "postStartCommand": "service mysql start"
+}
